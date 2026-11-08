@@ -17,7 +17,7 @@
             height: 100vh;
             display: block;
         }
-        /* カメラ映像のプレビュー（デバッグ・確認用として小さく画面隅に表示） */
+        /* カメラ映像のプレビュー（右上に小さく表示） */
         #camera-preview {
             position: absolute;
             top: 20px;
@@ -109,31 +109,16 @@
 </head>
 <body>
 
-    <!-- カメラプレビュー用映像要素（非表示にしたい場合は display: none; に変更可） -->
+    <!-- カメラプレビュー用映像要素 -->
     <video id="camera-preview" autoplay playsinline muted></video>
 
     <div id="canvas-container"></div>
 
     <div class="ui-overlay">
         <input type="password" id="api-key-input" class="api-input" placeholder="Gemini API Key を入力してください">
-        <div id="speech-bubble" class="speech-bubble">カメラを起動し、APIキーを入れてボタンを押してください。</div>
+        <div id="speech-bubble" class="speech-bubble">APIキーを入力し、ボタンを押すとカメラが起動します。</div>
         <button id="action-btn">AIに空間を見てもらう</button>
     </div>
 
     <script type="module">
-        import * as THREE from 'three';
-        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-
-        let videoElement = null;
-
-        // --- 1. Three.js シーン初期化 ---
-        const container = document.getElementById('canvas-container');
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x1a1a1a);
-
-        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 1.5, 4);
-
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio
+        import * as THREE from '
